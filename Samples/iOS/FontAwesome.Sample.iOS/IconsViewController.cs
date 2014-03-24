@@ -14,9 +14,30 @@ namespace FontAwesome.Sample.iOS
 		{
 		}
 
+		UIBarButtonItem rightNavButton;
+		UIBarButtonItem leftNavButton;
+
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+
+			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
+				this.EdgesForExtendedLayout = UIRectEdge.None;
+			}
+
+			leftNavButton = new UIBarButtonItem (FontAwesome.WebFont.ImageOf (FontAwesome.Icons.Flag, 30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
+				var av = new UIAlertView ("Font Awesome", "Flag Icon", null, "OK", null);
+
+				av.Show ();
+			});
+
+			rightNavButton = new UIBarButtonItem (FontAwesome.WebFont.ImageOf (FontAwesome.Icons.CloudDownload, 30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
+
+			});
+
+			this.NavigationItem.SetLeftBarButtonItem(leftNavButton, true);
+			this.NavigationItem.Title = "FontAwesome";
+			this.NavigationItem.SetRightBarButtonItem(rightNavButton, true);
 
 			this.TableView.Source = new IconsViewSource ();
 		}
