@@ -17,4 +17,4 @@ leftNavButton = new UIBarButtonItem (
 Sample App
 ==========
 
-![iphone-app][Art/sample-app.png]
+![iphone-app](Art/sample-app.png)
