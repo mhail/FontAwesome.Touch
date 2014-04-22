@@ -15,28 +15,20 @@ namespace FontAwesome.Sample.iOS
 		}
 
 		UIBarButtonItem rightNavButton;
-		UIBarButtonItem leftNavButton;
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-
+			/*
 			if (UIDevice.CurrentDevice.CheckSystemVersion (7, 0)) { 
 				this.EdgesForExtendedLayout = UIRectEdge.None;
 			}
+			*/
 
-			leftNavButton = new UIBarButtonItem (FontAwesome.WebFont.ImageOf (FontAwesome.Icons.Flag, 30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
-				var av = new UIAlertView ("Font Awesome", "Flag Icon", null, "OK", null);
-
-				av.Show ();
+			rightNavButton = new UIBarButtonItem (FontAwesome.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
+				UIApplication.SharedApplication.OpenUrl(new NSUrl("https://github.com/mhail/FontAwesomeComponent"));
 			});
-
-			rightNavButton = new UIBarButtonItem (FontAwesome.WebFont.ImageOf (FontAwesome.Icons.CloudDownload, 30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
-
-			});
-
-			this.NavigationItem.SetLeftBarButtonItem(leftNavButton, true);
-			this.NavigationItem.Title = "FontAwesome";
+			this.Title = "FontAwesome";
 			this.NavigationItem.SetRightBarButtonItem(rightNavButton, true);
 
 			this.TableView.Source = new IconsViewSource ();
@@ -44,29 +36,39 @@ namespace FontAwesome.Sample.iOS
 
 		public class IconsViewSource : UITableViewSource
 		{
-			private IDictionary<string, string> items = new Dictionary<string, string> ();
+			static Icon[] _icons = (Icon[])Enum.GetValues(typeof(Icon));
+			static string[] _groups = _icons.SelectMany (i => i.Categories ()).Distinct ().OrderBy(g=>g) .ToArray ();
+			static IDictionary<string, Icon[]> _lookup = _groups.ToDictionary (g => g, g => _icons.Where (i => i.Categories ().Contains (g)).ToArray ());
+
 			private string cellIdentifier = "FontAwesomeIconCell";
 
 			public IconsViewSource() : base()
 			{
-				foreach (var field in typeof(FontAwesome.Icons).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static))
-				{
-					items.Add( field.Name, field.GetValue(null) as string);
-				}
+			}
+
+			public override int NumberOfSections (UITableView tableView)
+			{
+				return _groups.Length;
+			}
+
+			public override string TitleForHeader (UITableView tableView, int section)
+			{
+				return _groups [section];
 			}
 
 			public override int RowsInSection (UITableView tableview, int section)
 			{
-				return items.Count;
+				return _lookup[_groups[section]].Length;
 			}
 
 			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 			{
-				UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier) ?? new UITableViewCell (UITableViewCellStyle.Default, cellIdentifier);
+				UITableViewCell cell = tableView.DequeueReusableCell (cellIdentifier) ?? new UITableViewCell (UITableViewCellStyle.Subtitle, cellIdentifier);
 
-				var key = items.Keys.ElementAt (indexPath.Row);
-				cell.TextLabel.Text = key;
-				cell.ImageView.Image = FontAwesome.WebFont.ImageOf (items[key], 30.0f, UIColor.Black);
+				var value =  _lookup[_groups[indexPath.Section]] [indexPath.Row];
+				cell.TextLabel.Text = Enum.GetName(typeof(Icon), value);
+				cell.DetailTextLabel.Text = string.Join(", ", value.Categories());
+				cell.ImageView.Image = value.ToUIImage(30.0f, UIColor.Black);
 
 				return cell;
 			}

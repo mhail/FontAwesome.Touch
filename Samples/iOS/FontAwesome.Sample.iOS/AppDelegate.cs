@@ -32,6 +32,7 @@ namespace FontAwesome.Sample.iOS
 
 			icons = new IconsViewController ();
 			nav = new UINavigationController (icons);
+			nav.NavigationBarHidden = false;
 			window.RootViewController = nav;
 			
 			// make the window visible

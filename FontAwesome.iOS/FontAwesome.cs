@@ -14,11 +14,11 @@ namespace FontAwesome
 			return UIFont.FromName (FontName, size);
 		}
 
-		public static UIImage ImageOf(string icon, float size = 20.0f, UIColor color = null)
+		public static UIImage ToUIImage(this Icon icon, float size = 20.0f, UIColor color = null)
 		{
-			color = color ?? UIColor.White;
+			color = color ?? UIColor.DarkTextColor;
 			var fontAwesome = FontOfSize(size);
-			NSString str = new NSString( icon);
+			NSString str = new NSString( icon.AsString());
 			var imgSize = str.StringSize (fontAwesome);
 			UIImage image = null;
 			UIGraphics.BeginImageContextWithOptions (imgSize, false, 0.0f);

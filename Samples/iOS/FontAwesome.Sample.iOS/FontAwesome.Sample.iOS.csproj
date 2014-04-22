@@ -50,7 +50,8 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey></CodesignKey>
+    <CodesignKey>
+    </CodesignKey>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchArch>ARMv7</MtouchArch>
@@ -98,6 +99,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
@@ -117,6 +119,10 @@
     <ProjectReference Include="..\..\..\FontAwesome.iOS\FontAwesome.iOS.csproj">
       <Project>{6FC5AE1A-A170-4F61-A1C0-2CC992CD72EF}</Project>
       <Name>FontAwesome.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\FontAwesome.iOS\FontAwesome\FontAwesome.csproj">
+      <Project>{089308EB-AE52-42E8-8FDD-D28061BD4C76}</Project>
+      <Name>FontAwesome</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

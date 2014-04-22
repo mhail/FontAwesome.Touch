@@ -9,9 +9,8 @@ Example
 =======
 
 ```csharp
-leftNavButton = new UIBarButtonItem (
-  FontAwesome.WebFont.ImageOf (FontAwesome.Icons.Flag),
-  UIBarButtonItemStyle.Bordered, (s,e) =>{ });
+rightNavButton = new UIBarButtonItem (FontAwesome.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{
+});
 ```
 
 Setup

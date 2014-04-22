@@ -12,7 +12,7 @@ namespace CodeGen
 			Console.WriteLine ("using System;");
 			Console.WriteLine ("namespace FontAwesome");
 			Console.WriteLine ("{");
-			Console.WriteLine ("public static class Icons");
+			Console.WriteLine ("public enum Icon : ushort");
 			Console.WriteLine ("{");
 			using (var reader = new System.IO.StreamReader ("icons.yml")) {
 				var yaml = new YamlStream();
@@ -24,6 +24,7 @@ namespace CodeGen
 					var id = icon.Children [new YamlScalarNode ("id")] as YamlScalarNode;
 					var name = icon.Children [new YamlScalarNode ("name")]as YamlScalarNode;
 					var unicode = icon.Children [new YamlScalarNode ("unicode")]as YamlScalarNode;
+					var categories = icon.Children [new YamlScalarNode("categories")] as YamlSequenceNode;
 
 					var fieldName = id.Value;
 
@@ -35,7 +36,11 @@ namespace CodeGen
 
 					fieldName = Regex.Replace(fieldName, "-", string.Empty);
 
-					Console.WriteLine ("public static readonly string {0} = \"\\u{1}\";",fieldName, unicode);
+					foreach (var category in categories) {
+						Console.WriteLine ("[Category(\"{0}\")]",category);
+					}
+
+					Console.WriteLine ("{0} = 0x{1},",fieldName, unicode);
 				}
 
 			}
