@@ -9,6 +9,7 @@
     <description>@description@</description>
     <releaseNotes>@releaseNotes@</releaseNotes>
     <copyright>Matthew Hail 2014</copyright>
+    <projectUrl>https://github.com/mhail/FontAwesome.Touch</projectUrl>
     @dependencies@
     @references@
   </metadata>

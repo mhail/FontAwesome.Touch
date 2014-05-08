@@ -23,8 +23,8 @@ namespace FontAwesome.Viewer
 		{
 			base.ViewDidLoad ();
 
-			rightNavButton = new UIBarButtonItem (FontAwesome.Touch.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{ 
-				UIApplication.SharedApplication.OpenUrl(new NSUrl("https://github.com/mhail/FontAwesomeComponent"));
+			rightNavButton = new UIBarButtonItem (FontAwesome.Touch.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{
+				UIApplication.SharedApplication.OpenUrl(new NSUrl("https://github.com/mhail/FontAwesome.Touch"));
 			});
 			this.Title = "FontAwesome";
 			this.NavigationItem.SetRightBarButtonItem(rightNavButton, true);
@@ -39,12 +39,12 @@ namespace FontAwesome.Viewer
 			};
 			searchBar.SizeToFit ();
 			searchBar.SearchButtonClicked += (sender, e) => {
-				Search (); 
+				Search ();
 			};
 			/*
 			searchBar.CancelButtonClicked += (sender, e) => {
 				searchBar.Text = null;
-				Search (); 
+				Search ();
 			};
 			*/
 			dataSource.IconSelected += (sender, e) => {
@@ -71,13 +71,13 @@ namespace FontAwesome.Viewer
 
 			public IEnumerable<Icon> Icons
 			{
-				get { 
+				get {
 					if (string.IsNullOrWhiteSpace (SearchText)) {
 						return _icons;
 					}
 					return _icons.Where (i =>{
 						var name = i.ToString ();
-						return name.StartsWith(SearchText, StringComparison.CurrentCultureIgnoreCase) || 
+						return name.StartsWith(SearchText, StringComparison.CurrentCultureIgnoreCase) ||
 							name.EndsWith(SearchText, StringComparison.CurrentCultureIgnoreCase) ||
 							name.Contains (SearchText);
 					});
@@ -86,7 +86,7 @@ namespace FontAwesome.Viewer
 
 			public IEnumerable<string> Groups
 			{
-				get { 
+				get {
 					return Icons.SelectMany (i => i.Categories ()).Distinct().OrderBy(g=>g);
 				}
 			}
@@ -136,4 +136,3 @@ namespace FontAwesome.Viewer
 		}
 	}
 }
-

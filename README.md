@@ -1,9 +1,10 @@
-FontAwesomeComponent
+FontAwesome.Touch
 ====================
 
 Font Awesome by Dave Gandy - http://fontawesome.io
 
-Use fontawesome in your xamarin iOS apps. Icons are rendered at the correct dpi using packaged font file.
+Use FontAwesome in your Xamarin iOS apps.
+  Icons are rendered at the correct dpi using packaged font file.
 
 Example
 =======
@@ -20,8 +21,9 @@ Nuget package comming soon!
 
 * Build FontAwesome.iOS project, add you your app.
 
-* Add font definition to the info.plist file. Note: the font is included within the
-FontAwesome.Touch dll. (Working on a solution to skip this step, suggestions welcome)
+* Add font definition to the info.plist file.
+  Note: the font is included within the FontAwesome.Touch dll. ( Working on a solution to skip this step, suggestions welcome )
+
 ```xml
 <key>UIAppFonts</key>
 <array>
