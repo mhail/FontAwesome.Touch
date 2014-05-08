@@ -9,7 +9,7 @@ Example
 =======
 
 ```csharp
-rightNavButton = new UIBarButtonItem (FontAwesome.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{
+rightNavButton = new UIBarButtonItem (FontAwesome.Touch.Icon.CloudDownload.ToUIImage(30), UIBarButtonItemStyle.Bordered, (s,e) =>{
 });
 ```
 
@@ -21,7 +21,7 @@ Nuget package comming soon!
 * Build FontAwesome.iOS project, add you your app.
 
 * Add font definition to the info.plist file. Note: the font is included within the
-FontAwesome.iOS dll. (Working on a solution to skip this step, suggestions welcome)
+FontAwesome.Touch dll. (Working on a solution to skip this step, suggestions welcome)
 ```xml
 <key>UIAppFonts</key>
 <array>
@@ -31,5 +31,10 @@ FontAwesome.iOS dll. (Working on a solution to skip this step, suggestions welco
 
 Sample App
 ==========
+
+Simple iOS app to allow viewing/searching icons in the component.
+
+Shows loading icons from enum and displaying in a cells image view.
+
 
 ![iphone-app](Art/sample-app.png)

@@ -20,63 +20,17 @@ x64/
 *_i.c
 *_p.c
 *.ilk
-*.meta
 *.obj
 *.pch
-*.pdb
-*.pgc
-*.pgd
-*.rsp
-*.sbr
-*.tlb
-*.tli
-*.tlh
-*.tmp
+*.mdb
 *.log
-*.vspscc
-*.vssscc
 .builds
 
-# Visual C++ cache files
-ipch/
-*.aps
-*.ncb
-*.opensdf
-*.sdf
-
-# Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-
-# Guidance Automation Toolkit
-*.gpState
+build/
+tools/FAKE/
 
 # ReSharper is a .NET coding add-in
 _ReSharper*
-
-# NCrunch
-*.ncrunch*
-.*crunch*.local.xml
-
-# Installshield output folder
-[Ee]xpress
-
-# DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
-
-# Click-Once directory
-publish
-
-# Publish Web Output
-*.Publish.xml
 
 # NuGet Packages Directory
 packages
@@ -85,8 +39,7 @@ packages
 csx
 *.build.csdef
 
-# Windows Store app package directory
-AppPackages/
+
 
 # Others
 [Bb]in

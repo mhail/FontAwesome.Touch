@@ -5,12 +5,10 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6FC5AE1A-A170-4F61-A1C0-2CC992CD72EF}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <RootNamespace>FontAwesome.iOS</RootNamespace>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>FontAwesome.iOS</AssemblyName>
+    <ProjectGuid>{9C394F84-05B4-4535-B83F-0802774CDDA1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>CodeGen</RootNamespace>
+    <AssemblyName>CodeGen</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +18,7 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -28,32 +26,24 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <Externalconsole>true</Externalconsole>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="monotouch" />
+    <Reference Include="YamlDotNet">
+      <HintPath>..\..\packages\YamlDotNet.3.1.1\lib\net35\YamlDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <BundleResource Include="Resources\fontawesome-webfont.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="FontAwesome.cs" />
-    <Compile Include="Icons.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="FontAwesome.iOS.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="FontAwesome\FontAwesome.csproj">
-      <Project>{089308EB-AE52-42E8-8FDD-D28061BD4C76}</Project>
-      <Name>FontAwesome</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
+    <None Include="..\..\icons.yml">
+      <Link>icons.yml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

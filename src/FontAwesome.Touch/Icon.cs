@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace FontAwesome
+namespace FontAwesome.Touch
 {
 	[AttributeUsage(AttributeTargets.Enum)]
 	public sealed class FontAttribute : Attribute
@@ -17,22 +17,6 @@ namespace FontAwesome
 		public string Name { get; private set; }
 
 		public CategoryAttribute(string name) { this.Name = name; }
-	}
-
-	public static class IconExtensions
-	{
-		private static readonly Type _iconType = typeof(Icon);
-		public static string AsString(this Icon icon)
-		{
-			return new string ((char)icon, 1);
-		}
-
-		public static string[] Categories(this Icon icon) 
-		{
-			return _iconType.GetField (Enum.GetName (_iconType, icon))
-				.GetCustomAttributes (typeof(CategoryAttribute), false).OfType<CategoryAttribute> ()
-				.Select (a => a.Name).ToArray ();
-		}
 	}
 
 	[Font("FontAwesome")]

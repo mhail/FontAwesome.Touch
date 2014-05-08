@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>10.0.0</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D515A520-85C0-416E-A33D-5A28985864DA}</ProjectGuid>
+    <ProjectGuid>{9AD39946-3DB3-49E3-AF9B-CB869F37347F}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FontAwesome.Sample.iOS</RootNamespace>
+    <RootNamespace>FontAwesome.Touch.Tests</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>FontAwesomeSampleiOS</AssemblyName>
+    <AssemblyName>FontAwesomeTouchTests</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,9 +24,6 @@
     <MtouchLink>None</MtouchLink>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchI18n>
-    </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -50,13 +47,7 @@
     <ConsolePause>false</ConsolePause>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>
-    </CodesignKey>
-    <MtouchI18n>
-    </MtouchI18n>
-    <MtouchArch>ARMv7</MtouchArch>
-    <IpaPackageName>
-    </IpaPackageName>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
@@ -99,11 +90,11 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
-    <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="MonoTouch.NUnitLite" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
+    <Folder Include="Resources\" />
+    <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -111,18 +102,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
-    <Compile Include="IconsViewController.cs" />
+    <Compile Include="UnitTestAppDelegate.cs" />
+    <Compile Include="Tests\IconsExtensionsTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\FontAwesome.iOS\FontAwesome.iOS.csproj">
-      <Project>{6FC5AE1A-A170-4F61-A1C0-2CC992CD72EF}</Project>
-      <Name>FontAwesome.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\FontAwesome.iOS\FontAwesome\FontAwesome.csproj">
-      <Project>{089308EB-AE52-42E8-8FDD-D28061BD4C76}</Project>
-      <Name>FontAwesome</Name>
+    <ProjectReference Include="..\..\src\FontAwesome.Touch\FontAwesome.Touch.csproj">
+      <Project>{65104D04-612C-4AB9-B31E-30923CCA153D}</Project>
+      <Name>FontAwesome.Touch</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

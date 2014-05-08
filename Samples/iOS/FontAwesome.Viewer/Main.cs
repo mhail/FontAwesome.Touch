@@ -4,7 +4,7 @@ using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
-namespace FontAwesome.Sample.iOS
+namespace FontAwesome.Viewer
 {
 	public class Application
 	{

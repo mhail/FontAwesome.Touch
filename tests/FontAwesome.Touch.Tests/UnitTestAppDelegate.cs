@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+using MonoTouch.NUnit.UI;
+using MonoTouch.NUnit;
 
-namespace FontAwesome.Sample.iOS
+namespace FontAwesome.Touch.Tests
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
-	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	[Register ("UnitTestAppDelegate")]
+	public partial class UnitTestAppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
 		UIWindow window;
-		IconsViewController icons;
-		UINavigationController nav;
+		TouchRunner runner;
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this
 		// method you should instantiate the window, load the UI into it and then make the window
@@ -27,13 +28,15 @@ namespace FontAwesome.Sample.iOS
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			runner = new TouchRunner (window){
+				AutoStart = true,
+				//Writer = new TcpTextWriter("localhost", 1111),
+			};
 
-			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (0x26, 0x99, 0x72);
+			// register every tests included in the main application/assembly
+			runner.Add (System.Reflection.Assembly.GetExecutingAssembly ());
 
-			icons = new IconsViewController ();
-			nav = new UINavigationController (icons);
-			nav.NavigationBarHidden = false;
-			window.RootViewController = nav;
+			window.RootViewController = new UINavigationController (runner.GetViewController ());
 			
 			// make the window visible
 			window.MakeKeyAndVisible ();
